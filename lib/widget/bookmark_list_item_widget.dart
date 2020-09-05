@@ -15,7 +15,7 @@ class BookmarkListItemWidget extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(12),
         child: InkWell(
-          onTap: () => navigateToViewBookMarkPage(context),
+          onTap: () => navigateToViewBookMarkPage(bookmark,context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
