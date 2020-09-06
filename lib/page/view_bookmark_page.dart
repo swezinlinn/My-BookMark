@@ -10,7 +10,7 @@ class ViewBookMarkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
-        appBar: AppBar(title : Text("View Book Mark")),
+        appBar: AppBar(title : Text(bookmark.title)),
        body: ViewWebPageWidget(bookmark.link),
      );
   }
