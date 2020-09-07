@@ -10,11 +10,16 @@ class BookmarkListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[
-        BookmarkListItemWidget(bookmarkList[0]),
-        BookmarkListItemWidget(bookmarkList[1])
-      ],
+      children: getBookmarkWidgetList()
     );
+  }
+
+  List<BookmarkListItemWidget> getBookmarkWidgetList(){
+    List<BookmarkListItemWidget> list = [];
+    for(Bookmark bookmark in bookmarkList){
+      list.add(BookmarkListItemWidget(bookmark));
+    }
+    return list;
   }
 }
 

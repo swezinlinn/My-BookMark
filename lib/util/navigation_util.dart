@@ -6,5 +6,7 @@ import 'package:my_bookmarks/page/view_bookmark_page.dart';
 void navigateToViewBookMarkPage(Bookmark bookmark, context) =>
     Navigator.of(context).push(MaterialPageRoute(builder : (context) => ViewBookMarkPage(bookmark)));
 
-void navigateToAddBookMarkPage(context) =>
-    Navigator.of(context).push(MaterialPageRoute(builder : (context) => AddBookMarkPage()));
+Future navigateToAddBookMarkPage(BuildContext context) {
+  return Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => AddBookMarkPage()));
+}

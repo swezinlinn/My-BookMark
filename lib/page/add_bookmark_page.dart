@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_bookmarks/model/bookmark.dart';
 
 void main() {
   runApp(AddBookMarkPage());
@@ -23,12 +24,21 @@ class _AddBookMarkPageState extends State<AddBookMarkPage> {
       appBar: AppBar(
         title: Text("Add a new bookmark"),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.check),
-        backgroundColor: Colors.green,
-        onPressed: (){
-
-        },
+      floatingActionButton: Builder(
+        builder: (BuildContext context) => FloatingActionButton(
+          child: Icon(Icons.check),
+          backgroundColor: Colors.green,
+          onPressed: (){
+              String title = _titleTextController.text;
+              String link = _linkTextController.text;
+              Scaffold.of(context).hideCurrentSnackBar();
+              if(isInputValid(title,link)){
+                  Navigator.pop(context,Bookmark(title,link));
+              }else{
+                  showInputError(context,title, link);
+              }
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -71,5 +81,21 @@ class _AddBookMarkPageState extends State<AddBookMarkPage> {
     _linkTextController.dispose();
     _linkFocusNode.dispose();
     super.dispose();
+  }
+
+  bool isInputValid(String title, String link) {
+    return (title.isNotEmpty && link.isNotEmpty);
+  }
+
+  void showInputError(BuildContext context,String title, String link){
+    if(title.isEmpty){
+      showSnackBar(context,"Title cannot be empty!");
+    }else if(link.isEmpty){
+      showSnackBar(context,"Link cannot be empty!");
+    }
+  }
+
+  void showSnackBar(BuildContext context, String message){
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 }
